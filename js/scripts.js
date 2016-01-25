@@ -7,54 +7,40 @@ function Place(placeName, placeLocation, placeLandmark, placeTime) {
 
 
 Place.prototype.fullLocation = function() {
-  return this.placeName + " " + this.placeLocation;
+  return this.placeName + ", " + this.placeLocation;
 };
 
-Place.prototype.fullLocation = function() {
-  return this.placeName + " " + this.placeLocation;
+Place.prototype.fullDescription = function() {
+  return this.placeLandmark + " " + this.placeTime;
 };
 
+$(document).ready(function(){
+  $("form#masterPlace").submit(function(event){
+
+    var inputName = $("input#placeName").val();
+    var inputLocation = $("input#placeLocation").val();
+    var inputLandmark = $("input#placeLandmark").val();
+    var inputTime = $("input#placeTime").val();
+    var newPlace = new Place(inputName, inputLocation, inputLandmark, inputTime);
+
+    $("ul#info").append("<p><span class='placename'>" + newPlace.fullLocation() + "</span></p>");
+
+    $("input#placeName").val("");
+    $("input#placeLocation").val("");
+    $("input#placeLandmark").val("");
+    $("input#placeTime").val("");
+
+    event.preventDefault();
+
+    $(".placename").last().click(function() {
+      $("#show-info").show();
+      $("#show-info h2").text(newPlace.fullLocation());
+      $(".place-name").text(newPlace.fullLocation());
+      $(".place-location").text(newPlace.placeLocation);
+      $(".place-landmark").text(newPlace.placeLandmark);
+      $(".place-time").text(newPlace.placeTime);
+    })
 
 
-
-
-
-//
-// function Contact(firstName, lastName, address) {
-//   this.firstName = firstName;
-//   this.lastName = lastName;
-//   this.address = address;
-// }
-//
-// Contact.prototype.fullName = function() {
-//   return this.firstName + " " + this.lastName + " " + this.address;
-// };
-//
-// $(document).ready(function() {
-//   $("form#new-contact").submit(function(event) {
-//
-//     var inputtedFirstName = $("input#new-first-name").val();
-//     var inputtedLastName = $("input#new-last-name").val();
-//     var inputtedAddress = $("input#new-address").val();
-//     var newContact = new Contact(inputtedFirstName, inputtedLastName, inputtedAddress);
-//
-//     $("ul#contacts").append("<li><span class='contact'>" + newContact.fullName() + "</span></li>");
-//
-//     $("input#new-first-name").val("");
-//     $("input#new-last-name").val("");
-//     $("input#new-address").val("");
-//         event.preventDefault();
-//
-//
-//         $(".contact").last().click(function(){
-//           $("#show-contact").show();
-//           $("#show-contact h2").text(newContact.fullName());
-//           $(".first-name").text(newContact.firstName);
-//           $(".last-name").text(newContact.lastName);
-//           $(".address").text(newContact.address);
-//           });
-//   });
-//
-//
-//
-// });
+  });
+});
