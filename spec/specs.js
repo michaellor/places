@@ -7,4 +7,13 @@ describe('Place', function() {
   expect(testPlace.placeTime).to.equal("Summer");
   });
 
+  it("adds fullName method to a place.", function() {
+    var testPlace = new Place ("Maui","Hawaii");
+    expect(testPlace.fullLocation()).to.equal("Maui Hawaii");
+  });
+
+  it("adds fullDescription method to a place.", function() {
+    var testPlace = new Place ("Beach","Summer");
+    expect(testPlace.fullDescription).to.equal("Beach Summer");
+  });
 });

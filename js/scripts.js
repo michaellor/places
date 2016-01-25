@@ -3,10 +3,16 @@ function Place(placeName, placeLocation, placeLandmark, placeTime) {
   this.placeLocation = placeLocation;
   this.placeLandmark = placeLandmark;
   this.placeTime = placeTime;
-}
+};
 
 
+Place.prototype.fullLocation = function() {
+  return this.placeName + " " + this.placeLocation;
+};
 
+Place.prototype.fullLocation = function() {
+  return this.placeName + " " + this.placeLocation;
+};
 
 
 
